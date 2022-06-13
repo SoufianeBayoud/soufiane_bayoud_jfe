@@ -2,10 +2,8 @@ package be.ehb.soufiane_bayoud_jfe.Controller;
 
 import be.ehb.soufiane_bayoud_jfe.Model.*;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class MainController {
@@ -30,5 +28,24 @@ public class MainController {
     private Iterable<Verhuur> findAllLocations() {
         return verhuurDAO.findAll();
     }
+
+    @RequestMapping(value = "api/customers/new", method = RequestMethod.POST)
+    public HttpStatus addNewHuurder(@RequestParam("voornaam")String voornaam,
+                                    @RequestParam("achternaam")String achternaam,
+                                    @RequestParam("email")String email,
+                                    @RequestParam("telefoonnummer")int telefoonnummer){
+        Huurder huurder = new Huurder();
+        huurder.setVoornaam(voornaam);
+        huurder.setAchternaam(achternaam);
+        huurder.setEmail(email);
+        huurder.setTelefoonnumer(telefoonnummer);
+
+        huurderDAO.save(huurder);
+
+        return HttpStatus.OK;
+
+    }
+
+
 
 }
