@@ -2,7 +2,6 @@ package be.ehb.soufiane_bayoud_jfe.Model;
 
 import javax.persistence.*;
 import javax.validation.constraints.Future;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity

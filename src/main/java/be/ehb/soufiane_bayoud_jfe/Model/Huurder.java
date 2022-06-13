@@ -24,6 +24,8 @@ public class Huurder {
     private String achternaam;
     private int telefoonnumer;
 
+
+
     public Huurder() {
     }
 

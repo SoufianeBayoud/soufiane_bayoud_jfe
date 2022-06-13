@@ -2,8 +2,11 @@ package be.ehb.soufiane_bayoud_jfe.Controller;
 
 import be.ehb.soufiane_bayoud_jfe.Model.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Optional;
 
 @RestController
 public class MainController {
@@ -19,17 +22,25 @@ public class MainController {
         this.verhuurDAO = verhuurDAO;
     }
 
-    @RequestMapping(value = "api/cars", method = RequestMethod.GET)
+    @RequestMapping(value = "/api/cars", method = RequestMethod.GET)
     public Iterable<Auto> findAllCars() {
         return autoDAO.findAll();
     }
 
-    @RequestMapping(value = "api/locations", method = RequestMethod.GET)
+    @RequestMapping(value = "/api/locations", method = RequestMethod.GET)
     private Iterable<Verhuur> findAllLocations() {
         return verhuurDAO.findAll();
     }
 
-    @RequestMapping(value = "api/customers/new", method = RequestMethod.POST)
+
+    /*Hier gebruiken we een specifieke query die we gaan definiëren in de AutoDAO, ook moeten we de PathVariable gebruiken zodat we
+    de te gezochte manufacturer */
+    @RequestMapping(value = "/api/cars/{manufacturer}", method = RequestMethod.GET)
+    public Iterable<Auto> findAllByFabrikant(@PathVariable("manufacturer") String fabrikant) {
+        return autoDAO.findAllByFabrikant(fabrikant);
+    }
+
+    @RequestMapping(value = "/api/customers/new", method = RequestMethod.POST)
     public HttpStatus addNewHuurder(@RequestParam("voornaam")String voornaam,
                                     @RequestParam("achternaam")String achternaam,
                                     @RequestParam("email")String email,
@@ -45,6 +56,7 @@ public class MainController {
         return HttpStatus.OK;
 
     }
+
 
 
 
