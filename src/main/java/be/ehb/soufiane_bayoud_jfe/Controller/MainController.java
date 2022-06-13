@@ -1,12 +1,12 @@
 package be.ehb.soufiane_bayoud_jfe.Controller;
 
+import be.ehb.soufiane_bayoud_jfe.DAO.AutoDAO;
+import be.ehb.soufiane_bayoud_jfe.DAO.HuurderDAO;
+import be.ehb.soufiane_bayoud_jfe.DAO.VerhuurDAO;
 import be.ehb.soufiane_bayoud_jfe.Model.*;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.Optional;
 
 @RestController
 public class MainController {
@@ -57,6 +57,25 @@ public class MainController {
 
     }
 
+
+    @RequestMapping(value = "/api/cars/now", method = RequestMethod.GET)
+    public HttpStatus getAllCarsNow(@RequestParam("id")int id) {
+
+        /*if(autoDAO.existsById(id)){
+            Auto auto = autoDAO.findById(id).get();
+            if(huurderDAO.existsById(id)){
+                Huurder huurder = huurderDAO.findById(id).get();
+                if(verhuurDAO.existsById(id));
+
+            }
+        }*/
+
+        /*Checken (via een if) of de id van de verhuur bestaat via verhuurDAO.existsById(id) als die bestaat gaan we
+        checken of de eindtijd van de huur groter is dan de starttijd (via if) indien dit het geval creeërt je een controller Verhuur
+        die link aan verhuurDAO.findById(id).get(); en daarna ga je verhuur.getAuto() in een lijst returnen. Indien je niet aan de conditie voldoet return je
+        HttpStatus.NOT_ACCEPTABLE*/
+        return HttpStatus.NOT_ACCEPTABLE;
+    }
 
 
 

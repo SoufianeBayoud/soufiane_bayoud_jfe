@@ -1,5 +1,6 @@
-package be.ehb.soufiane_bayoud_jfe.Model;
+package be.ehb.soufiane_bayoud_jfe.DAO;
 
+import be.ehb.soufiane_bayoud_jfe.Model.Auto;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 
